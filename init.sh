@@ -1,17 +1,13 @@
 #!/bin/bash
 
-if ! which git > /dev/null ||
-	! which gpg > /dev/null ||
-	! which zsh > /dev/null
-then
-	echo "make sure the following packages are installed : git gnupg zsh"
-else
+sudo apt update
+sudo apt install git gnupg zsh
 
-	git config --global user.signingkey 64C5EE41C1DCD60A
-	git config --global user.name nimon
-	git config --global user.email nimon@42paris.fr
+git config --global user.signingkey 64C5EE41C1DCD60A
+git config --global user.name nimon
+git config --global user.email nimon@42paris.fr
 
-	echo '# https://github.com/drduh/config/blob/master/gpg-agent.conf
+echo '# https://github.com/drduh/config/blob/master/gpg-agent.conf
 # https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html
 enable-ssh-support
 ttyname $GPG_TTY
@@ -25,17 +21,17 @@ pinentry-program /usr/bin/pinentry-curses
 #pinentry-program /usr/local/bin/pinentry-mac
 #pinentry-program /opt/homebrew/bin/pinentry-mac' > ~/.gnupg/gpg-agent.conf
 
-	echo 'export GPG_TTY="$(tty)"
+echo 'export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpg-connect-agent updatestartuptty /bye > /dev/null' >> ~/.bashrc
 
-	export GPG_TTY="$(tty)"
-	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	gpgconf --launch gpg-agent
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
-	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-	echo 'export GPG_TTY="$(tty)"
+echo 'export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpg-connect-agent updatestartuptty /bye > /dev/null' >> ~/.zshrc
-fi
+
