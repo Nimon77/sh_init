@@ -28,7 +28,7 @@ pinentry-program /usr/bin/pinentry-curses
 
 echo 'export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent"' >> ~/.bashrc
+gpg-connect-agent updatestartuptty /bye > /dev/null"' >> ~/.bashrc
 
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -38,4 +38,4 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 echo 'export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent' >> ~/.zshrc
+gpg-connect-agent updatestartuptty /bye > /dev/null' >> ~/.zshrc
