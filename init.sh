@@ -35,3 +35,6 @@ echo 'export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpg-connect-agent updatestartuptty /bye > /dev/null' >> ~/.zshrc
 
+zsh -c 'git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt" --depth=1'
+zsh -c 'ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"'
+sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"spaceship\"/g" ~/.zshrc
