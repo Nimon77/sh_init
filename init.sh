@@ -3,7 +3,7 @@
 sudo apt update
 sudo apt install git gnupg zsh
 
-git config --global user.signingkey 64C5EE41C1DCD60A
+git config --global user.signingkey 34DEB31EBA5CC362
 git config --global user.name nimon
 git config --global user.email nimon@42paris.fr
 
